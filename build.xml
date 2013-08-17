@@ -12,14 +12,20 @@
 	<target name="init">
 		<tstamp></tstamp>
 		<mkdir dir="${build}"/>
+		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath"/>
 		</target>
 	
-	<target name="main" depends="init">
-		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath"/>
-		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
+	<target name="helloservlet" depends="init">
+		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml" />
+	</target>
+			
+	<target name="helloJDBC" depends="init">
+		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
 		<lib dir="lib" />
 			<classes dir="${build}" />
-			</war>
-		
+		</war>	
+	</target>
+	
+	<target name="main" depends="helloservlet, helloJDBC">
 	</target>
 	</project>

@@ -45,7 +45,10 @@ public class HelloJDBC extends HttpServlet {
 			 "user=javademo&password=Bespoke2013");
 			statement = connect.createStatement();
 			resultSet = statement.executeQuery("select message from javademo.javademo where id = 'jdbc'");
-			message = resultSet.getString(0);
+			while (resultSet.next()){
+				message = resultSet.getString(1);
+			}
+
 		}
 		catch (SQLException e) {
 			throw e;
