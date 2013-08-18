@@ -1,31 +1,42 @@
-<project name="javademo" default="main" basedir=".">
+<project name="javademo" default="main" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="build" location="build" />
 	<property name="src" location="src" />
-	
-	  <path id="build.classpath">
-	    <fileset dir="lib">
-	      <include name="**/*.jar" />
-	    </fileset>
-	  </path>
 
-	
+	<path id="build.classpath">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="bootstrap" description="Used to install the ivy task jar">
+		<get dest="${ant.home}/lib/ivy.jar" src="http://search.maven.org/remotecontent?filepath=org/apache/ivy/ivy/2.3.0/ivy-2.3.0.jar" />
+	</target>
+
+
 	<target name="init">
-		<tstamp></tstamp>
-		<mkdir dir="${build}"/>
-		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath"/>
-		</target>
-	
-	<target name="helloservlet" depends="init">
+		<tstamp />
+		<echo message="${ant.version}" />
+		<echo message="${ant.home}" />
+		
+		<mkdir dir="${build}" />
+		<ivy:retrieve />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath" />
+	</target>
+
+	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml" />
 	</target>
-			
-	<target name="helloJDBC" depends="init">
+
+	<target name="helloJDBC" depends="compile">
 		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
-		<lib dir="lib" />
+			<lib dir="lib" />
 			<classes dir="${build}" />
-		</war>	
+		</war>
 	</target>
-	
+
 	<target name="main" depends="helloservlet, helloJDBC">
 	</target>
-	</project>
+</project>

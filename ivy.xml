@@ -1,0 +1,8 @@
+<ivy-module version="2.0">
+	<info organisation="com.willluongo" module="javademo" />
+	<dependencies>
+		<dependency org="mysql" name="mysql-connector-java" rev="5.1.26" />
+		<dependency org="org.eclipse.jetty" name="jetty-servlet"
+			rev="9.0.4.v20130625" />
+	</dependencies>
+</ivy-module>
