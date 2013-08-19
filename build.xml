@@ -33,7 +33,10 @@
 	</target>
 
 	<target name="helloservlet" depends="compile">
-		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml" />
+		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
+			<lib dir="lib" />
+			<classes dir="${build}" />
+		</war>
 	</target>
 
 	<target name="helloJDBC" depends="compile">
