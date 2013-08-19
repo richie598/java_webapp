@@ -1,6 +1,8 @@
 <project name="javademo" default="main" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="build" location="build" />
 	<property name="src" location="src" />
+	<property name="lib" location="lib" />
+
 	<condition property="getAnt">
 		<resourceexists>
 			<file file="${ant.home}/lib/ivy.jar" />
@@ -8,7 +10,7 @@
 	</condition>
 
 	<path id="build.classpath">
-		<fileset dir="lib">
+		<fileset dir="${lib}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
@@ -35,7 +37,7 @@
 
 	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
-			<lib dir="lib">
+			<lib dir="${lib}">
 				<include name="servlet-api-3.0.jar" />
 			</lib>
 			<classes dir="${build}" />
@@ -44,13 +46,22 @@
 
 	<target name="helloJDBC" depends="compile">
 		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
-			<lib dir="lib">
+			<lib dir="${lib}">
 				<include name="servlet-api-3.0.jar" />
 				<include name="mysql-connector-java-5.1.26.jar" />
 			</lib>
 			<classes dir="${build}" />
 		</war>
 	</target>
+
+	<target name="clean">
+		<delete verbose="true" includeEmptyDirs="true">
+			<fileset dir="${lib}" />
+			<fileset dir="${build}" />
+			<fileset dir="." includes="*.war"/>
+		</delete>
+	</target>
+
 
 	<target name="main" depends="helloservlet, helloJDBC">
 	</target>

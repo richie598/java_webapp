@@ -16,6 +16,5 @@ These should be good starting points for basic Java deployments. Further researc
 Todos
 -----
 
-- Ant clean task
 - JDBC war uses properties file
 - More complex JNDI connecting war
