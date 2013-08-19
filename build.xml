@@ -34,14 +34,19 @@
 
 	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
-			<lib dir="lib" />
+			<lib dir="lib">
+				<include name="servlet-api-3.0.jar" />
+			</lib>
 			<classes dir="${build}" />
 		</war>
 	</target>
 
 	<target name="helloJDBC" depends="compile">
 		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
-			<lib dir="lib" />
+			<lib dir="lib">
+				<include name="servlet-api-3.0.jar" />
+				<include name="mysql-connector-java-5.1.26.jar" />
+			</lib>
 			<classes dir="${build}" />
 		</war>
 	</target>
