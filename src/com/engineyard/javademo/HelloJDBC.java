@@ -1,4 +1,4 @@
-package com.willluongo.javademo;
+package com.engineyard.javademo;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

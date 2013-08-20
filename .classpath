@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/servlet-api-3.0.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.26.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-3.0.0.v201112011016.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,4 +1,4 @@
-package com.willluongo.javademo;
+package com.engineyard.javademo;
 
 import javax.servlet.http.HttpServlet;
 

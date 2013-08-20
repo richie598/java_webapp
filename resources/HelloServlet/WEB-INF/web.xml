@@ -6,7 +6,7 @@
    version="2.5">
   <servlet>
     <servlet-name>Hello</servlet-name>
-    <servlet-class>com.willluongo.javademo.HelloServlet</servlet-class>
+    <servlet-class>com.engineyard.javademo.HelloServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
