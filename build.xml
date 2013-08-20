@@ -37,8 +37,6 @@
 
 	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
-			<lib dir="${lib}">
-			</lib>
 			<classes dir="${build}" />
 		</war>
 	</target>
