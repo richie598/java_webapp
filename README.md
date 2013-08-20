@@ -17,4 +17,3 @@ Todos
 -----
 
 - More complex JNDI connecting war
-- Refactor package name
