@@ -1,11 +1,15 @@
 package com.willluongo.javademo;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +27,19 @@ public class HelloJDBC extends HttpServlet {
 	private ResultSet resultSet = null;
 	private String message = null;
 
+	// Properties for database connection
+	private Properties props = new Properties();
+	private String dbdriver = null;
+	private String dbtype = null;
+	private String dbhost = null;
+	private String dbuser = null;
+	private String dbpassword = null;
+	private String connectURL = null;
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		try {
-			getMessage("jdbc");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		initializeDB();
+		getMessage("jdbc");
 		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().println(message);
@@ -38,26 +47,43 @@ public class HelloJDBC extends HttpServlet {
 				"session=".concat(request.getSession(true).getId()));
 	}
 
-	private void getMessage(String string) throws Exception {
+	private void initializeDB() throws IOException {
+		props.load(this.getClass().getClassLoader().getResourceAsStream("hellojdbc.properties"));
+		dbdriver = props.getProperty("dbdriver");
+		dbtype = props.getProperty("dbtype");
+		dbhost = props.getProperty("dbhost");
+		dbuser = props.getProperty("dbuser");
+		dbpassword = props.getProperty("dbpassword");
+		connectURL = "jdbc:" + dbtype + "://" + dbhost + "/javademo?" + "user=" +dbuser+"&password=" +dbpassword;
+	}
+
+	private void getMessage(String string) {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:mysql://10.0.1.220/javademo?" +
-			 "user=javademo&password=Bespoke2013");
+			Class.forName(dbdriver);
+			connect = DriverManager
+					.getConnection(connectURL);
 			statement = connect.createStatement();
-			resultSet = statement.executeQuery("select message from javademo.javademo where id = 'jdbc'");
-			while (resultSet.next()){
+			resultSet = statement
+					.executeQuery("select message from javademo.javademo where id = 'jdbc'");
+			while (resultSet.next()) {
 				message = resultSet.getString(1);
 			}
 
+		} catch (SQLException e) {
+			message = "Query failed: " + connectURL + e;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			message = "Couldn't load driver class: " + e;
+		} finally {
+			try {
+				if (statement != null )	statement.close();
+				if (connect != null) connect.close();
+			} catch (SQLException e) {
+				// I don't really care if this can't close
+				e.printStackTrace();
+			}
+
 		}
-		catch (SQLException e) {
-			throw e;
-		}
-		finally
-		{
-			statement.close();		
-			connect.close();	
-		}
-		
+
 	}
 }

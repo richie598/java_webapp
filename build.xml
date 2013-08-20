@@ -32,13 +32,12 @@
 	</target>
 
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath" />
+		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
 	</target>
 
 	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
 			<lib dir="${lib}">
-				<include name="servlet-api-3.0.jar" />
 			</lib>
 			<classes dir="${build}" />
 		</war>
@@ -47,9 +46,9 @@
 	<target name="helloJDBC" depends="compile">
 		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
 			<lib dir="${lib}">
-				<include name="servlet-api-3.0.jar" />
 				<include name="mysql-connector-java-5.1.26.jar" />
 			</lib>
+			<zipfileset dir="resources/HelloJDBC" includes="hellojdbc.properties" prefix="WEB-INF/classes" />
 			<classes dir="${build}" />
 		</war>
 	</target>
@@ -58,7 +57,7 @@
 		<delete verbose="true" includeEmptyDirs="true">
 			<fileset dir="${lib}" />
 			<fileset dir="${build}" />
-			<fileset dir="." includes="*.war"/>
+			<fileset dir="." includes="*.war" />
 		</delete>
 	</target>
 
