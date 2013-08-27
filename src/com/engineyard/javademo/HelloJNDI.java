@@ -44,7 +44,7 @@ public class HelloJNDI extends HttpServlet {
 
 	private void initializeDB() throws NamingException {
 		ctx = new InitialContext();
-		ds = (DataSource)ctx.lookup("java:comp/env/jdbc/DSTest");
+		ds = (DataSource)ctx.lookup("java:comp/env/jdbc/EYMySQL");
 	}
 
 	private void getMessage(String string) {
