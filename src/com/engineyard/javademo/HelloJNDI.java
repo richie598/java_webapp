@@ -55,7 +55,7 @@ public class HelloJNDI extends HttpServlet {
 			con = ds.getConnection();
 			statement = con.createStatement();
 			resultSet = statement
-					.executeQuery("select message from javademo.javademo where id = 'jndi'");
+					.executeQuery("select message from javademo where id = 'jndi'");
 			while (resultSet.next()) {
 				message = resultSet.getString(1);
 			}
