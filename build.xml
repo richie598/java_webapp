@@ -51,6 +51,12 @@
 		</war>
 	</target>
 
+	<target name="hellojndi" depends="compile">
+		<war destfile="hellojndi.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
+			<classes dir="${build}" />
+		</war>
+	</target>
+
 	<target name="clean">
 		<delete verbose="true" includeEmptyDirs="true">
 			<fileset dir="${lib}" />
@@ -60,6 +66,6 @@
 	</target>
 
 
-	<target name="main" depends="helloservlet, helloJDBC">
+	<target name="main" depends="helloservlet, helloJDBC, hellojndi">
 	</target>
 </project>
