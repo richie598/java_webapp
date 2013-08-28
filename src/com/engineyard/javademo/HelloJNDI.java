@@ -29,12 +29,12 @@ public class HelloJNDI extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			initializeDB();
+			getMessage("jndi");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			message = e.toString();
 		}
-		if (message == null)
-			getMessage("jndi");
+
 		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().println(message);
@@ -44,7 +44,7 @@ public class HelloJNDI extends HttpServlet {
 
 	private void initializeDB() throws NamingException {
 		ctx = new InitialContext();
-		ds = (DataSource)ctx.lookup("java:comp/env/jdbc/EYMySQL");
+		ds = (DataSource) ctx.lookup("java:comp/env/jdbc/EYMySQL");
 	}
 
 	private void getMessage(String string) {
