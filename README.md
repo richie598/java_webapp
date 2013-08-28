@@ -8,6 +8,7 @@ Contains the following java web applications:
 
 - Vanilla "hello world" war
 - Simple JDBC connecting war
+- Simple war that uses a datasource
 
 Objectives
 ----------
@@ -16,4 +17,4 @@ These should be good starting points for basic Java deployments. Further researc
 Todos
 -----
 
-- More complex JNDI connecting war
+- Refactor getMessage() so it actually uses parameterized query
