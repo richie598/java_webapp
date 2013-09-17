@@ -2,6 +2,7 @@
 	<property name="build" location="build" />
 	<property name="src" location="src" />
 	<property name="lib" location="lib" />
+	<property file="build.properties" />
 
 	<condition property="getAnt">
 		<resourceexists>
@@ -9,11 +10,46 @@
 		</resourceexists>
 	</condition>
 
-	<path id="build.classpath">
-		<fileset dir="${lib}">
-			<include name="**/*.jar" />
-		</fileset>
-	</path>
+	<echo message="${target.container}"/>
+	<condition property="tomcat7">
+		<equals arg1="${target.container}" arg2="tomcat7"/>
+	</condition>
+	<condition property="jetty8">
+		<equals arg1="${target.container}" arg2="jetty8"/>
+	</condition>
+	<condition property="jetty9">
+		<equals arg1="${target.container}" arg2="jetty9"/>
+	</condition>
+
+
+	<target name="tomcat7" description="Build demo for Tomcat 7" if="tomcat7">
+		<echo message="Building against Tomcat 7 container"/>
+		<path id="build.classpath">
+			<fileset dir="${lib}">
+				<include name="tomcat-servlet-api-7.0.42.jar" />
+			</fileset>
+		</path>
+	</target>
+
+	<target name="jetty8" description="Build demo for Jetty 8" if="jetty8">
+		<echo message="Building against Jetty 8 container"/>
+		<path id="build.classpath">
+			<fileset dir="${lib}">
+				<include name="jetty-servlet-8.1.12.v20130726.jar" />
+				<include name="javax.servlet-3.0.0.v201112011016.jar" />
+			</fileset>
+		</path>
+	</target>
+
+	<target name="jetty9" description="Build demo for Jetty 9" if="jetty9">
+		<echo message="Building against Jetty 9 container"/>
+		<path id="build.classpath">
+			<fileset dir="${lib}">
+				<include name="jetty-servlet-9.0.4.v20130625.jar" />
+				<include name="javax.servlet-3.0.0.v201112011016.jar" />
+			</fileset>
+		</path>
+	</target>
 
 	<target name="bootstrap" description="Used to install the ivy task jar" unless="getAnt">
 		<echo message="Downloading Ivy..." />
@@ -31,21 +67,17 @@
 		<ivy:retrieve />
 	</target>
 
-	<target name="compile7" depends="init">
-		<javac target="1.7" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
+	<target name="compile" depends="init, tomcat7, jetty8, jetty9">
+		<javac target="${target.javaversion}" source="${target.javaversion}" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
 	</target>
 
-	<target name="compile6" depends="init">
-		<javac target="1.6" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
-	</target>
-
-	<target name="helloservlet" depends="compile7">
+	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
 			<classes dir="${build}" />
 		</war>
 	</target>
 
-	<target name="helloJDBC" depends="compile7">
+	<target name="helloJDBC" depends="compile">
 		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
 			<lib dir="${lib}">
 				<include name="mysql-connector-java-5.1.26.jar" />
@@ -55,14 +87,8 @@
 		</war>
 	</target>
 
-	<target name="hellojndi" depends="compile7">
+	<target name="hellojndi" depends="compile">
 		<war destfile="hellojndi.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
-			<classes dir="${build}" />
-		</war>
-	</target>
-
-	<target name="hellojndi6" depends="compile6">
-		<war destfile="hellojndi6.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
 			<classes dir="${build}" />
 		</war>
 	</target>
