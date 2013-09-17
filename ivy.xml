@@ -1,8 +1,19 @@
 <ivy-module version="2.0">
 	<info organisation="com.willluongo" module="javademo" />
+
+	<configurations>
+		<conf name="jetty8" description="Dependencies for demos targeting Jetty 8"/>
+		<conf name="jetty9" description="Dependencies for demos targeting Jetty 9"/>
+		<conf name="tomcat7" description="Dependencies for demos targeting Tomcat 7"/>
+	</configurations>
+
 	<dependencies>
 		<dependency org="mysql" name="mysql-connector-java" rev="5.1.26" />
 		<dependency org="org.eclipse.jetty" name="jetty-servlet"
-			rev="9.0.4.v20130625" />
+			rev="9.0.4.v20130625" conf="jetty9->default"/>
+		<dependency org="org.eclipse.jetty" name="jetty-servlet"
+			rev="8.1.12.v20130726" conf="jetty8->default"/>
+		<dependency org="org.apache.tomcat" name="tomcat-servlet-api"
+			rev="7.0.42" conf="tomcat7->default"/>
 	</dependencies>
 </ivy-module>
