@@ -4,5 +4,9 @@
 		<dependency org="mysql" name="mysql-connector-java" rev="5.1.26" />
 		<dependency org="org.eclipse.jetty" name="jetty-servlet"
 			rev="9.0.4.v20130625" />
+		<dependency org="org.eclipse.jetty" name="jetty-servlet"
+			rev="8.1.12.v20130726" />
+		<dependency org="org.apache.tomcat" name="tomcat-servlet-api"
+			rev="7.0.42"/>
 	</dependencies>
 </ivy-module>

@@ -31,17 +31,21 @@
 		<ivy:retrieve />
 	</target>
 
-	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
+	<target name="compile7" depends="init">
+		<javac target="1.7" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
 	</target>
 
-	<target name="helloservlet" depends="compile">
+	<target name="compile6" depends="init">
+		<javac target="1.6" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
+	</target>
+
+	<target name="helloservlet" depends="compile7">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
 			<classes dir="${build}" />
 		</war>
 	</target>
 
-	<target name="helloJDBC" depends="compile">
+	<target name="helloJDBC" depends="compile7">
 		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
 			<lib dir="${lib}">
 				<include name="mysql-connector-java-5.1.26.jar" />
@@ -51,8 +55,14 @@
 		</war>
 	</target>
 
-	<target name="hellojndi" depends="compile">
+	<target name="hellojndi" depends="compile7">
 		<war destfile="hellojndi.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
+			<classes dir="${build}" />
+		</war>
+	</target>
+
+	<target name="hellojndi6" depends="compile6">
+		<war destfile="hellojndi6.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
 			<classes dir="${build}" />
 		</war>
 	</target>
