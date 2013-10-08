@@ -27,6 +27,8 @@
 		<path id="build.classpath">
 			<fileset dir="${lib}">
 				<include name="tomcat-servlet-api-7.0.42.jar" />
+				<include name="spring-*.jar" />
+				<include name="commons-logging-1.1.1.jar" />
 			</fileset>
 		</path>
 	</target>
@@ -37,6 +39,8 @@
 			<fileset dir="${lib}">
 				<include name="jetty-servlet-8.1.12.v20130726.jar" />
 				<include name="javax.servlet-3.0.0.v201112011016.jar" />
+				<include name="spring-*.jar" />
+				<include name="commons-logging-1.1.1.jar" />
 			</fileset>
 		</path>
 	</target>
@@ -47,6 +51,8 @@
 			<fileset dir="${lib}">
 				<include name="jetty-servlet-9.0.4.v20130625.jar" />
 				<include name="javax.servlet-3.0.0.v201112011016.jar" />
+				<include name="spring-*.jar" />
+				<include name="commons-logging-1.1.1.jar" />
 			</fileset>
 		</path>
 	</target>
@@ -68,7 +74,8 @@
 	</target>
 
 	<target name="compile" depends="init, tomcat7, jetty8, jetty9">
-		<javac target="${target.javaversion}" source="${target.javaversion}" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
+		<echo message="Compiling to Java ${target.javaversion}" />
+		<javac includeantruntime="false" target="${target.javaversion}" source="${target.javaversion}" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
 	</target>
 
 	<target name="helloservlet" depends="compile">
@@ -93,6 +100,17 @@
 		</war>
 	</target>
 
+	<target name="helloSpring" depends="compile">
+		<war destfile="hellospringmvc.war" webxml="resources/HelloSpringMVC/WEB-INF/web.xml">
+			<lib dir="${lib}">
+				<include name="spring-*.jar" />
+				<include name="commons-logging-1.1.1.jar" />
+			</lib>
+			<zipfileset dir="resources/HelloSpringMVC" />
+			<classes dir="${build}" />
+		</war>
+	</target>
+
 	<target name="clean">
 		<delete verbose="true" includeEmptyDirs="true">
 			<fileset dir="${lib}" />
@@ -101,7 +119,15 @@
 		</delete>
 	</target>
 
+	<target name="deploy-container">
+		<echo message="Copying to ${target.container.webapps}"/>
+		<copy todir="${target.container.webapps}">
+			<fileset dir="${lib}">
+				<include name="hellospringmvc.war" />
+			</fileset>
+		</copy>
+	</target>
 
-	<target name="main" depends="helloservlet, helloJDBC, hellojndi">
+	<target name="main" depends="helloservlet, helloJDBC, hellojndi, helloSpring">
 	</target>
 </project>

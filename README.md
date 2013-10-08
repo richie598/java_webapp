@@ -9,6 +9,7 @@ Contains the following java web applications:
 - Vanilla "hello world" war
 - Simple JDBC connecting war
 - Simple war that uses a datasource
+- Simple Spring MVC demo
 
 Objectives
 ----------

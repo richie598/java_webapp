@@ -35,6 +35,7 @@ public class HelloJDBC extends HttpServlet {
 	private String dbuser = null;
 	private String dbpassword = null;
 	private String connectURL = null;
+	private String dbname = null;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +55,8 @@ public class HelloJDBC extends HttpServlet {
 		dbhost = props.getProperty("dbhost");
 		dbuser = props.getProperty("dbuser");
 		dbpassword = props.getProperty("dbpassword");
-		connectURL = "jdbc:" + dbtype + "://" + dbhost + "/javademo?" + "user=" +dbuser+"&password=" +dbpassword;
+		dbname  = props.getProperty("schemaname");
+		connectURL = "jdbc:" + dbtype + "://" + dbhost + "/" + dbname + "?" + "user=" +dbuser+"&password=" +dbpassword;
 	}
 
 	private void getMessage(String string) {
@@ -64,7 +66,7 @@ public class HelloJDBC extends HttpServlet {
 					.getConnection(connectURL);
 			statement = connect.createStatement();
 			resultSet = statement
-					.executeQuery("select message from javademo.javademo where id = 'jdbc'");
+					.executeQuery("select message from javademo.javademo where id = '" + string + "'");
 			while (resultSet.next()) {
 				message = resultSet.getString(1);
 			}

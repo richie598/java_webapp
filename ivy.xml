@@ -1,19 +1,41 @@
 <ivy-module version="2.0">
-	<info organisation="com.willluongo" module="javademo" />
+	<info organisation="com.engineyard" module="javademo" />
 
 	<configurations>
 		<conf name="jetty8" description="Dependencies for demos targeting Jetty 8"/>
 		<conf name="jetty9" description="Dependencies for demos targeting Jetty 9"/>
 		<conf name="tomcat7" description="Dependencies for demos targeting Tomcat 7"/>
+		<conf name="spring" description="Dependencies for demos using Spring Framework"/>
 	</configurations>
 
+	
+	
 	<dependencies>
-		<dependency org="mysql" name="mysql-connector-java" rev="5.1.26" />
+		<!--exclude ext="txt" />
+    	<exclude type="src" /-->
+   	<dependency org="org.springframework" name="spring-web" 
+			rev="3.2.4.RELEASE" conf="spring->default"/>
+
+       	<dependency org="mysql" name="mysql-connector-java" rev="5.1.26" />
 		<dependency org="org.eclipse.jetty" name="jetty-servlet"
 			rev="9.0.4.v20130625" conf="jetty9->default"/>
 		<dependency org="org.eclipse.jetty" name="jetty-servlet"
 			rev="8.1.12.v20130726" conf="jetty8->default"/>
 		<dependency org="org.apache.tomcat" name="tomcat-servlet-api"
 			rev="7.0.42" conf="tomcat7->default"/>
-	</dependencies>
+
+		<dependency org="org.springframework" name="spring-aop" rev="3.1.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-aspects" rev="3.1.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-asm" rev="3.1.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-beans" rev="3.2.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-context" rev="3.2.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-context-support" rev="3.2.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-core" rev="3.2.4.RELEASE" />
+		<dependency org="org.springframework" name="spring-expression" rev="3.2.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-instrument" rev="3.2.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-jdbc" rev="3.2.4.RELEASE"/>
+		<dependency org="com.caucho" name="hessian" rev="4.0.7" />
+	
+		<dependency org="org.springframework" name="spring-webmvc" rev="3.2.4.RELEASE"/> 
+    </dependencies>
 </ivy-module>
