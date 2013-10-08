@@ -1,4 +1,4 @@
-use todo;
+use test;
 
 -- MySQL dump 10.11
 --
