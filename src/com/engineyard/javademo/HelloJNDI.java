@@ -2,9 +2,9 @@ package com.engineyard.javademo;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -53,13 +53,14 @@ public class HelloJNDI extends HttpServlet {
 
 	private void getMessage(String string) {
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
+		String query = "select message from javademo where id = ?";
 		ResultSet resultSet = null;
 		try {
 			con = ds.getConnection();
-			statement = con.createStatement();
-			resultSet = statement
-					.executeQuery("select message from javademo where id = '" + string + "'");
+			statement = con.prepareStatement(query);
+			statement.setString(1, string);
+			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				message = resultSet.getString(1);
 			}

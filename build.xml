@@ -27,7 +27,8 @@
 		<path id="build.classpath">
 			<fileset dir="${lib}">
 				<include name="tomcat-servlet-api-7.0.42.jar" />
-				<include name="spring-*.jar" />
+				<include name="org.springframework.*.jar" />
+				<include name="com.springsource.*.jar" />
 				<include name="commons-logging-1.1.1.jar" />
 			</fileset>
 		</path>
@@ -39,7 +40,8 @@
 			<fileset dir="${lib}">
 				<include name="jetty-servlet-8.1.12.v20130726.jar" />
 				<include name="javax.servlet-3.0.0.v201112011016.jar" />
-				<include name="spring-*.jar" />
+				<include name="org.springframework.*.jar" />
+				<include name="com.springsource.*.jar" />
 				<include name="commons-logging-1.1.1.jar" />
 			</fileset>
 		</path>
@@ -52,6 +54,7 @@
 				<include name="jetty-servlet-9.0.4.v20130625.jar" />
 				<include name="javax.servlet-3.0.0.v201112011016.jar" />
 				<include name="org.springframework.*.jar" />
+				<include name="com.springsource.*.jar" />
 				<include name="commons-logging-1.1.1.jar" />
 			</fileset>
 		</path>
@@ -70,7 +73,7 @@
 		<echo message="${ant.home}" />
 
 		<mkdir dir="${build}" />
-		<ivy:retrieve />
+		<ivy:retrieve type="jar"/>
 	</target>
 
 	<target name="compile" depends="init, tomcat7, jetty8, jetty9">
