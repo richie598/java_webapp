@@ -11,10 +11,8 @@
 	
 	
 	<dependencies>
-		<!--exclude ext="txt" />
-    	<exclude type="src" /-->
-   	<dependency org="org.springframework" name="spring-web" 
-			rev="3.2.4.RELEASE" conf="spring->default"/>
+   		<!--dependency org="org.springframework" name="spring-web" 
+			rev="3.2.4.RELEASE" conf="spring->default"/-->
 
        	<dependency org="mysql" name="mysql-connector-java" rev="5.1.26" />
 		<dependency org="org.eclipse.jetty" name="jetty-servlet"

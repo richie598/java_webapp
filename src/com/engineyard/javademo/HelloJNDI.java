@@ -2,9 +2,9 @@ package com.engineyard.javademo;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -37,9 +37,13 @@ public class HelloJNDI extends HttpServlet {
 
 		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_OK);
-		response.getWriter().println(message);
+		response.getWriter().println("<title>Java on Engine Yard</title></head>");
+		response.getWriter().println("<h1>I'm running Java on Engine Yard</h1>");
 		response.getWriter().println(
-				"session=".concat(request.getSession(true).getId()));
+			"<p><img src=\"http://s3.amazonaws.com/engineyard.com/media_files/files/49/original/ey-java.jpg\" />");
+		response.getWriter().println("<h2>" + message );
+		response.getWriter().println(
+				"session=".concat(request.getSession(true).getId()) + "</h2>");
 	}
 
 	private void initializeDB() throws NamingException {
@@ -49,13 +53,14 @@ public class HelloJNDI extends HttpServlet {
 
 	private void getMessage(String string) {
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
+		String query = "select message from javademo where id = ?";
 		ResultSet resultSet = null;
 		try {
 			con = ds.getConnection();
-			statement = con.createStatement();
-			resultSet = statement
-					.executeQuery("select message from javademo where id = 'jndi'");
+			statement = con.prepareStatement(query);
+			statement.setString(1, string);
+			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				message = resultSet.getString(1);
 			}

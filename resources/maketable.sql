@@ -38,7 +38,7 @@ CREATE TABLE `javademo` (
 
 LOCK TABLES `javademo` WRITE;
 /*!40000 ALTER TABLE `javademo` DISABLE KEYS */;
-INSERT INTO `javademo` VALUES ('jdbc','Hello from the JDBC servlet!'),('jndi','Hello from the JNDI servlet!');
+INSERT INTO `javademo` VALUES ('jdbc','Hello from the JDBC servlet!'),('jndi','Hello from the JNDI servlet!'), ('spf','Hello from the SpringJdbc servlet!');
 /*!40000 ALTER TABLE `javademo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
