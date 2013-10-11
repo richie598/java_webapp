@@ -37,9 +37,13 @@ public class HelloJNDI extends HttpServlet {
 
 		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_OK);
-		response.getWriter().println(message);
+		response.getWriter().println("<title>Java on Engine Yard</title></head>");
+		response.getWriter().println("<h1>I'm running Java on Engine Yard</h1>");
 		response.getWriter().println(
-				"session=".concat(request.getSession(true).getId()));
+			"<p><img src=\"http://s3.amazonaws.com/engineyard.com/media_files/files/49/original/ey-java.jpg\" />");
+		response.getWriter().println("<h2>" + message );
+		response.getWriter().println(
+				"session=".concat(request.getSession(true).getId()) + "</h2>");
 	}
 
 	private void initializeDB() throws NamingException {
@@ -55,7 +59,7 @@ public class HelloJNDI extends HttpServlet {
 			con = ds.getConnection();
 			statement = con.createStatement();
 			resultSet = statement
-					.executeQuery("select message from javademo where id = 'jndi'");
+					.executeQuery("select message from javademo where id = '" + string + "'");
 			while (resultSet.next()) {
 				message = resultSet.getString(1);
 			}
