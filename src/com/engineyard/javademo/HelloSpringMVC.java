@@ -41,21 +41,16 @@ public class HelloSpringMVC {
 
 		try {
 		    message = (String)jdbcTemplate.query( 
-		    	new PreparedStatementCreator() {
-            		public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                		return connection.prepareStatement("select message from javademo where ID=?");
-            	}},
-            	new PreparedStatementSetter() {
-			      	public void setValues(PreparedStatement preparedStatement) throws SQLException {
-			        	preparedStatement.setString(1, idString);
-			      	}}, 
-			    new ResultSetExtractor() {
-				    public Object extractData(ResultSet resultSet) throws SQLException, DataAccessException {
+		    	"select message from javademo where ID=?",
+		    	new Object[] { idString },
+		    	new ResultSetExtractor<String>() {
+				    public String extractData(ResultSet resultSet) throws SQLException, DataAccessException {
 				        if (resultSet.next()) {
 				          return resultSet.getString(1);
 				        }
 				        return null;
-      				}}		
+      				}
+      			}		
       		);
 
 		} catch (DataAccessException e) {

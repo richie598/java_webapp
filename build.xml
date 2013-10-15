@@ -78,21 +78,13 @@
 
 	<target name="compile" depends="init, tomcat7, jetty8, jetty9">
 		<echo message="Compiling to Java ${target.javaversion}" />
-		<javac includeantruntime="false" target="${target.javaversion}" source="${target.javaversion}" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true" />
+		<javac includeantruntime="false" target="${target.javaversion}" source="${target.javaversion}" srcdir="${src}" destdir="${build}" classpathref="build.classpath" debug="true"> 
+			<compilerarg value="-Xlint:unchecked"/>
+		</javac>
 	</target>
 
 	<target name="helloservlet" depends="compile">
 		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
-			<classes dir="${build}" />
-		</war>
-	</target>
-
-	<target name="helloJDBC" depends="compile">
-		<war destfile="hellojdbc.war" webxml="resources/HelloJDBC/WEB-INF/web.xml">
-			<lib dir="${lib}">
-				<include name="mysql-connector-java-5.1.26.jar" />
-			</lib>
-			<zipfileset dir="resources/HelloJDBC" includes="hellojdbc.properties" prefix="WEB-INF/classes" />
 			<classes dir="${build}" />
 		</war>
 	</target>
@@ -135,6 +127,6 @@
 		</copy>
 	</target>
 
-	<target name="main" depends="helloservlet, helloJDBC, hellojndi, helloSpring">
+	<target name="main" depends="helloservlet, hellojndi, helloSpring">
 	</target>
 </project>
