@@ -6,8 +6,8 @@ Contents
 This repo contains the following java web applications:
 
 - A vanilla "hello world" Servlet 
-- Simple Servlet that uses a container-configured JDBC datasource (with JNDI name EYMySQL)
-- Simple Spring MVC demo that also uses the EYMySQL datasource
+- Simple Servlet that uses a container-configured JDBC datasource (with JNDI name `EYMySQL`)
+- Simple Spring MVC demo that also uses the `EYMySQL` datasource
 
 along with an ant configuration file (build.xml) to build the sample .war files. 
 
@@ -22,8 +22,8 @@ Prerequisites
 
 Getting Started
 ---------------
-1. 'git clone' this repository locally
-2. run 'ant' (build takes a while because the ant configuration uses ivy for dependency management)
+1. `git clone` this repository locally
+2. run `ant` (build takes a while because the ant configuration uses ivy for dependency management)
 3. Target .war files are built in the top level directory
 
 Configuring the Database
@@ -35,7 +35,7 @@ To configure the database in your Engine Yard environment for these examples, yo
 If you have not set up SSH, follow [these instructions][6].
 
 
-2. Use 'mysql' to set up the table that will contain the messages and populate them.
+2. Use `mysql` to set up the table that will contain the messages and populate them.
 
 Your database server on Engine Yard will be installed with an empty database with the same name as your environment. The database will have a user
 So, if my environment is called 'javademoenv', the database will also be 'javademoenv' and the user will be 'javademoenv_user'. So, using this example environment, 
