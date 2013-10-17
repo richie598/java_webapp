@@ -37,7 +37,7 @@ If you have not set up SSH, follow [these instructions][6].
 
 2. Use `mysql` to set up the table that will contain the messages and populate them.
 
-Your database server on Engine Yard will be installed with an empty database with the same name as your environment. The database will have a user
+Your database server on Engine Yard will be installed with an empty database with the same name as your environment. The database will also have an application specific user which is granted access rights to that database.
 So, if my environment is called 'javademoenv', the database will also be 'javademoenv' and the user will be 'javademoenv_user'. So, using this example environment, 
 
 <pre>mysql -u javademo_user -p </pre>
