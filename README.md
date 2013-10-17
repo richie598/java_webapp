@@ -50,7 +50,7 @@ To retrieve your database password:
  * Click the Servers tab.
  * Find the database server and click the "Show password" link.
 
-3. Enter the following into the mysql command line:
+Enter the following into the mysql command line:
 
 <pre> mysql > use javademoenv;</pre>
 
