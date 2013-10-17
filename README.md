@@ -1,19 +1,19 @@
 java_webapp
 ===========
 
+Objectives
+----------
+These are simple demos for illustrating basic Java deployment on Engine Yard. Future releases will enable generic JDBC access, more complex Spring configurations, and possibly support for JEE containers. 
+
 Contents
 --------
 This repo contains the following java web applications:
 
-- A vanilla "hello world" Servlet 
-- Simple Servlet that uses a container-configured JDBC datasource (with JNDI name `EYMySQL`)
-- Simple Spring MVC demo that also uses the `EYMySQL` datasource
+- HelloServlet: A vanilla "hello world" Servlet 
+- HelloJNDI: A Simple Servlet that uses a container-configured JDBC datasource (with JNDI name `EYMySQL`)
+- HelloSpringMVC: A basic demo that uses Spring MVC for the web tier and and also uses Spring's `JdbcTemplate` with the `EYMySQL` datasource
 
 along with an ant configuration file (build.xml) to build the sample .war files. 
-
-Objectives
-----------
-These are simple demos for illustrating basic Java deployment on Engine Yard. Future releases will enable generic JDBC access, more complex Spring configurations, and possibly support for JEE containers. 
 
 Prerequisites
 -------------
@@ -23,12 +23,12 @@ Prerequisites
 Getting Started
 ---------------
 1. `git clone` this repository locally
-2. run `ant` (build takes a while because the ant configuration uses ivy for dependency management)
+2. run `ant` (building takes a while because the ant configuration uses ivy for dependency management)
 3. Target .war files are built in the top level directory
 
 Configuring the Database
 ------------------------
-The HelloJNDI and HelloSpringMVC Servlets connect to a container-configured JDBC datasource to retrieve a message displayed by the Servlet.
+The HelloJNDI and HelloSpringMVC Servlets connect to a container-configured JDBC datasource to retrieve a message displayed by the Servlet Response.
 To configure the database in your Engine Yard environment for these examples, you need to:
 
 1. SSH into your database server.
