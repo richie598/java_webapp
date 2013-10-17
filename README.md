@@ -17,7 +17,7 @@ along with an ant configuration file (build.xml) to build the sample .war files.
 
 Releases
 --------
-The releases directory contains pre-built .war files for the three demo Servlets.
+The [releases][8] area above contains pre-built .war files for the three demo Servlets.
 
 Prerequisites
 -------------
@@ -82,3 +82,4 @@ The war files built locally by ant can be deployed with Engine Yard using the [U
 [5]: https://support.cloud.engineyard.com/entries/27322283-Sign-up-for-an-Engine-Yard-Account
 [6]: https://support.cloud.engineyard.com/entries/27519756-Set-up-SSH
 [7]: http://ant.apache.org/
+[8]: https://github.com/engineyard/java_webapp/releases
