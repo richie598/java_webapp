@@ -18,7 +18,8 @@ along with an ant configuration file (build.xml) to build the sample .war files.
 Prerequisites
 -------------
 - You need a JDK [Java 7][1] and Apache [ant][7] to build these samples
-- You need an account on [Engine Yard][2] to deploy these samples. [Sign up][5] for one!
+
+These samples should run in any Servlet engine or web container. If you wish to deploy these samples on [Engine Yard][2], you need an account. [Sign up][5] for one!
 
 Getting Started
 ---------------
