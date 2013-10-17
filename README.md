@@ -61,10 +61,10 @@ Objectives
 ----------
 These are simple demos for illustrating basic Java deployment on Engine Yard. Future releases will enable generic JDBC access, more complex Spring configurations, and possibly support for JEE containers. 
 
-[1] http://www.oracle.com/technetwork/java/javase/downloads/index.html
-[2] http://ui.engineyard.com
-[3] https://support.cloud.engineyard.com/entries/26483236-User-Interface-for-Deploying-your-Java-Application-on-Engine-Yard
-[4] https://support.cloud.engineyard.com/entries/27042383-CLI-for-Deploying-your-Java-Application-on-Engine-Yard
-[5] https://support.cloud.engineyard.com/entries/27322283-Sign-up-for-an-Engine-Yard-Account
-[6] https://support.cloud.engineyard.com/entries/27519756-Set-up-SSH
-[7] http://ant.apache.org/
+[1]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+[2]: http://ui.engineyard.com
+[3]: https://support.cloud.engineyard.com/entries/26483236-User-Interface-for-Deploying-your-Java-Application-on-Engine-Yard
+[4]: https://support.cloud.engineyard.com/entries/27042383-CLI-for-Deploying-your-Java-Application-on-Engine-Yard
+[5]: https://support.cloud.engineyard.com/entries/27322283-Sign-up-for-an-Engine-Yard-Account
+[6]: https://support.cloud.engineyard.com/entries/27519756-Set-up-SSH
+[7]: http://ant.apache.org/
