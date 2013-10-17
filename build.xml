@@ -2,6 +2,7 @@
 	<property name="build" location="build" />
 	<property name="src" location="src" />
 	<property name="lib" location="lib" />
+	<property name="deploy" location="deploy" />
 	<property file="build.properties" />
 
 	<condition property="getAnt">
@@ -84,13 +85,13 @@
 	</target>
 
 	<target name="helloservlet" depends="compile">
-		<war destfile="helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
+		<war destfile="${deploy}/helloservlet.war" webxml="resources/HelloServlet/WEB-INF/web.xml">
 			<classes dir="${build}" />
 		</war>
 	</target>
 
 	<target name="hellojndi" depends="compile">
-		<war destfile="hellojndi.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
+		<war destfile="${deploy}/hellojndi.war" webxml="resources/HelloJNDI/WEB-INF/web.xml">
 			<lib dir="${lib}">
 				<include name="mysql-connector-java-5.1.26.jar" />
 			</lib>
@@ -99,7 +100,7 @@
 	</target>
 
 	<target name="helloSpring" depends="compile">
-		<war destfile="hellospringmvc.war" webxml="resources/HelloSpringMVC/WEB-INF/web.xml">
+		<war destfile="${deploy}/hellospringmvc.war" webxml="resources/HelloSpringMVC/WEB-INF/web.xml">
 			<lib dir="${lib}">
 				<include name="org.springframework.*.jar" />
 				<include name="commons-logging-1.1.1.jar" />
@@ -114,6 +115,7 @@
 		<delete verbose="true" includeEmptyDirs="true">
 			<fileset dir="${lib}" />
 			<fileset dir="${build}" />
+			<fileset dir="${deploy}" />
 			<fileset dir="." includes="*.war" />
 		</delete>
 	</target>
@@ -121,8 +123,8 @@
 	<target name="deploy-container">
 		<echo message="Copying to ${target.container.webapps}"/>
 		<copy todir="${target.container.webapps}">
-			<fileset dir="${lib}">
-				<include name="hellospringmvc.war" />
+			<fileset dir="${deploy}">
+				<include name="*.war" />
 			</fileset>
 		</copy>
 	</target>

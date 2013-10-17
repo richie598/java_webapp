@@ -15,6 +15,10 @@ This repo contains the following java web applications:
 
 along with an ant configuration file (build.xml) to build the sample .war files. 
 
+Releases
+--------
+The releases directory contains pre-built .war files for the three demo Servlets.
+
 Prerequisites
 -------------
 - You need a JDK [Java 7][1] and Apache [ant][7] to build these samples
@@ -25,7 +29,7 @@ Getting Started
 ---------------
 1. `git clone` this repository locally
 2. run `ant` (building takes a while because the ant configuration uses ivy for dependency management)
-3. Target .war files are built in the top level directory
+3. Target .war files are built in the deploy directory
 
 Configuring the Database
 ------------------------
