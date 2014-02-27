@@ -1,5 +1,6 @@
 package com.engineyard.javademo;
 
+import java.util.Date;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ public class HelloServlet extends HttpServlet {
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().println("<title>Java on Engine Yard</title></head>");
 		response.getWriter().println("<h1>I'm running Java on "
-			+ + getServletContext().getServerInfo() 
+			+ getServletContext().getServerInfo() 
 			+ " on Engine Yard, at " 
 			+ new Date().toString() + "</h1>");
 		response.getWriter().println(
